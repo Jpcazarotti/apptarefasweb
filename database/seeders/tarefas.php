@@ -25,6 +25,5 @@ class tarefas extends Seeder
         foreach ($tarefas as $tarefa) {
             Tarefa::create($tarefa);
         }
-
     }
 }

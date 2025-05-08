@@ -17,27 +17,20 @@ class TarefaController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'tarefa' => 'required'
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Tarefa $tarefa)
-    {
-        //
+        Tarefa::create([
+            'tarefa' => $request->tarefa,
+            'status' => 0
+        ]);
+
+        return redirect()->route('home.index');
     }
 
     /**
@@ -45,7 +38,7 @@ class TarefaController extends Controller
      */
     public function edit(Tarefa $tarefa)
     {
-        //
+        return view('editar', compact('tarefa'));
     }
 
     /**
@@ -61,6 +54,7 @@ class TarefaController extends Controller
      */
     public function destroy(Tarefa $tarefa)
     {
-        //
+        $tarefa->delete();
+        return redirect()->route('home.index');
     }
 }
