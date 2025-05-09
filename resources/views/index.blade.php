@@ -13,14 +13,16 @@
         @foreach ($tarefas as $tr)
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <div class="d-flex">
-                    <input type="checkbox" class="form-check-input me-2" name="status" {{ $tr->status ? 'checked' : '' }}>
+                    <input type="checkbox" data-id="{{ $tr->id }}" class="form-check-input me-2 checkboxTarefa"
+                        name="status" {{ $tr->status ? 'checked' : '' }}>
                     <span>{{ $tr->tarefa }}</span>
                 </div>
 
                 <div class="btn-group">
-                    <a href="{{ route('editar', $tr->id) }}" class="btn btn-light btn-sm"><i class="fa-regular fa-edit"></i></a>
+                    <a href="{{ route('editar', $tr->id) }}" class="btn btn-light btn-sm"><i
+                            class="fa-regular fa-edit"></i></a>
                     <form action="{{ route('deletar', $tr->id) }}" method="post" class="btn-group"
-                        onsubmit="return  confirm('Tem certeza que deseja excluir?')">                       
+                        onsubmit="return  confirm('Tem certeza que deseja excluir?')">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
